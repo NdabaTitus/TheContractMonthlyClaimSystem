@@ -8,39 +8,38 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/TheContractMonthlyClaimSystem.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">TheContractMonthlyClaimSystem</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CMCS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
                         <!-- Home & Privacy -->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @((ViewData["Title"] as string) == "Home" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link @((ViewData["Title"] as string) == "Privacy" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
 
                         <!-- CMCS Prototype Pages -->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Submission">Submission</a>
+                            <a class="nav-link @((ViewData["Title"] as string) == "Submission" ? "active" : "")" asp-area="" asp-controller="Claim" asp-action="Submission">Submission</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Approval">Approval</a>
+                            <a class="nav-link @((ViewData["Title"] as string) == "Approval" ? "active" : "")" asp-area="" asp-controller="Claim" asp-action="Approval">Approval</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Upload">Upload</a>
+                            <a class="nav-link @((ViewData["Title"] as string) == "Upload" ? "active" : "")" asp-area="" asp-controller="Claim" asp-action="Upload">Upload</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Tracking">Tracking</a>
+                            <a class="nav-link @((ViewData["Title"] as string) == "Tracking" ? "active" : "")" asp-area="" asp-controller="Claim" asp-action="Tracking">Tracking</a>
                         </li>
                     </ul>
                 </div>
@@ -54,8 +53,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted mt-3">
-        <div class="container">
+    <footer class="border-top footer text-muted mt-3 py-3">
+        <div class="container text-center">
             &copy; 2025 - TheContractMonthlyClaimSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

@@ -1,24 +1,33 @@
-﻿@{
+﻿@model TheContractMonthlyClaimSystem.Models.Claims
+
+@{
     ViewData["Title"] = "Claim Submission";
 }
 
 <h2>Submit a Claim</h2>
 
-<form>
+<form asp-action="Submission" method="post">
     <div>
-        <label for="month">Claim Month:</label>
-        <input type="month" id="month" name="claimMonth" />
+        <label for="claimMonth">Claim Month:</label>
+        <input type="month" id="claimMonth" asp-for="ClaimMonth" />
+        <span asp-validation-for="ClaimMonth" class="text-danger"></span>
     </div>
 
     <div>
         <label for="hoursWorked">Hours Worked:</label>
-        <input type="number" id="hoursWorked" name="hoursWorked" />
+        <input type="number" id="hoursWorked" asp-for="HoursWorked" />
+        <span asp-validation-for="HoursWorked" class="text-danger"></span>
     </div>
 
     <div>
         <label for="hourlyRate">Hourly Rate:</label>
-        <input type="number" id="hourlyRate" name="hourlyRate" step="0.01" />
+        <input type="number" id="hourlyRate" asp-for="HourlyRate" step="0.01" />
+        <span asp-validation-for="HourlyRate" class="text-danger"></span>
     </div>
 
     <button type="submit">Submit Claim</button>
 </form>
+
+<div class="text-danger">
+    @Html.ValidationSummary(true)
+</div>
