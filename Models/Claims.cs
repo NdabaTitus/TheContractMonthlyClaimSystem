@@ -6,6 +6,8 @@ namespace TheContractMonthlyClaimSystem.Models
     public class Claims
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Lecturer ID is required")]
         public int LecturerId { get; set; }
 
         [Required(ErrorMessage = "Claim month is required")]
@@ -18,12 +20,29 @@ namespace TheContractMonthlyClaimSystem.Models
         public decimal HourlyRate { get; set; }
 
         public string Status { get; set; }
+
         public double TotalAmount { get; set; }
+
         public DateTime SubmittedAt { get; set; }
 
-        // Methods
-        public double CalculateTotal() => TotalAmount = (double)HoursWorked * (double)HourlyRate;
-        public void Submit() => SubmittedAt = DateTime.Now;
-        public void UpdateStatus(string newStatus) => Status = newStatus;
+        // Calculate total and update TotalAmount
+        public double CalculateTotal()
+        {
+            TotalAmount = (double)HoursWorked * (double)HourlyRate;
+            return TotalAmount;
+        }
+
+        // Mark claim as submitted
+        public void Submit()
+        {
+            SubmittedAt = DateTime.Now;
+            Status = "Submitted";
+        }
+
+        // Update status
+        public void UpdateStatus(string newStatus)
+        {
+            Status = newStatus;
+        }
     }
 }
