@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Upload Documents";
+}
+
+<h2>Upload Supporting Documents</h2>
+
+<form enctype="multipart/form-data">
+    <div>
+        <label for="claimId">Claim ID:</label>
+        <input type="text" id="claimId" name="claimId" />
+    </div>
+
+    <div>
+        <label for="file">Choose File:</label>
+        <input type="file" id="file" name="file" />
+    </div>
+
+    <button type="submit">Upload Document</button>
+</form>
