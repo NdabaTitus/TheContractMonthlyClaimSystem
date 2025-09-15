@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Pending Approvals";
+}
+
+<h2>Pending Approvals</h2>
+<p>This page will show claims that require approval by an administrator.</p>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Lecturer</th>
+            <th>Month</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>August 2025</td>
+            <td>R 4500</td>
+            <td>Pending</td>
+            <td>
+                <button class="btn btn-success">Approve</button>
+                <button class="btn btn-danger">Reject</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

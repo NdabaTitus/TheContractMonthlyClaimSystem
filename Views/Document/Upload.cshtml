@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Upload Document";
+}
+
+<h2>Upload Document</h2>
+<p>This is the Document Upload page. Here, lecturers can upload supporting files for claims.</p>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="document">Choose file:</label>
+        <input type="file" class="form-control" id="document" name="document" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Upload</button>
+</form>
