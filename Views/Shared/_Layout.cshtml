@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - TheContractMonthlyClaimSystem</title>
-
-    <!-- Stylesheets -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/custom.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/TheContractMonthlyClaimSystem.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 <body>
     <header>
@@ -21,34 +21,20 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <!-- Home & Privacy -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-
-                        <!-- Claims Pages -->
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Submission">Submission</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Submission">Submit Claim</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Approval">Approval</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Approval" asp-action="Index">Approve Claims</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Upload">Upload</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Tracking">Tracking</a>
-                        </li>
-
-                        <!-- NEW Controllers -->
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Document" asp-action="Index">Upload Documents</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Approval" asp-action="Index">Approvals</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Claim" asp-action="Tracking">Track Claims</a>
                         </li>
                     </ul>
                 </div>
@@ -68,5 +54,11 @@
         </div>
     </footer>
 
-    <!-- Scri
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

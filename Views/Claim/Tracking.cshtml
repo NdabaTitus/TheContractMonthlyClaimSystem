@@ -1,26 +1,103 @@
-﻿@{
-    ViewData["Title"] = "Claim Tracking";
+﻿@model List<TheContractMonthlyClaimSystem.Models.Claims>
+@{
+    ViewData["Title"] = "Track Your Claims";
 }
 
-<h2>Track Your Claim</h2>
+<div class="container mt-4">
+    <h2 class="text-primary mb-4"><i class="fas fa-search me-2"></i>Track Your Claims</h2>
 
-<table border="1" cellpadding="5">
-    <thead>
-        <tr>
-            <th>Claim ID</th>
-            <th>Month</th>
-            <th>Status</th>
-            <th>Submitted At</th>
-            <th>Last Updated</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>101</td>
-            <td>August 2025</td>
-            <td>Approved</td>
-            <td>01-09-2025</td>
-            <td>05-09-2025</td>
-        </tr>
-    </tbody>
-</table>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center">
+            <i class="fas fa-inbox fa-2x mb-3"></i>
+            <h4>No claims submitted yet</h4>
+            <p class="mb-0">Submit your first claim to track its progress.</p>
+            <a href="@Url.Action("Submission")" class="btn btn-primary mt-2">Submit Claim</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Claim ID</th>
+                        <th>Month</th>
+                        <th>Hours</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Progress</th>
+                        <th>Submitted</th>
+                        <th>Last Updated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var claim in Model)
+                    {
+                        <tr>
+                            <td><strong>#@claim.Id</strong></td>
+                            <td>@claim.ClaimMonth</td>
+                            <td>@claim.HoursWorked</td>
+                            <td class="fw-bold text-success">R @claim.TotalAmount.ToString("N2")</td>
+                            <td>
+                                @{
+                                    var statusClass = claim.Status switch
+                                    {
+                                        "Approved" => "bg-success",
+                                        "Rejected" => "bg-danger",
+                                        "Submitted" => "bg-primary",
+                                        _ => "bg-warning"
+                                    };
+                                }
+                                <span class="badge @statusClass">@claim.Status</span>
+                            </td>
+                            <td style="width: 200px;">
+                                <div class="progress" style="height: 8px;">
+                                    @{
+                                        var progressWidth = claim.Status switch
+                                        {
+                                            "Submitted" => "33%",
+                                            "Approved" => "100%",
+                                            "Rejected" => "100%",
+                                            _ => "0%"
+                                        };
+                                        var progressClass = claim.Status switch
+                                        {
+                                            "Approved" => "bg-success",
+                                            "Rejected" => "bg-danger",
+                                            "Submitted" => "bg-primary",
+                                            _ => "bg-secondary"
+                                        };
+                                    }
+                                <div class="progress-bar @progressClass" role="progressbar"
+                                     style="width: @progressWidth;"
+                                     aria-valuenow="@progressWidth" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <small class="text-muted">
+                                @(claim.Status switch
+                                {
+                                    "Pending" => "Not Submitted",
+                                    "Submitted" => "Under Review",
+                                    "Approved" => "Completed",
+                                    "Rejected" => "Completed",
+                                    _ => "Unknown"
+                                })
+                        </small>
+                    </td>
+                    <td>@claim.SubmittedAt.ToString("dd MMM yyyy")</td>
+                    <td>@claim.LastUpdated.ToString("dd MMM yyyy")</td>
+                </tr>
+                                }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

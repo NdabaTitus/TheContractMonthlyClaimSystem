@@ -1,32 +1,72 @@
 ﻿@model TheContractMonthlyClaimSystem.Models.Claims
-
 @{
-    ViewData["Title"] = "Claim Submission";
+    ViewData["Title"] = "Submit Monthly Claim";
 }
 
-<h2>Submit a Claim</h2>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center py-3">
+                    <h2 class="mb-0"><i class="fas fa-file-upload me-2"></i>Submit Monthly Claim</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Submission" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LecturerId" class="form-label fw-bold">Lecturer ID</label>
+                                <input asp-for="LecturerId" class="form-control" />
+                                <span asp-validation-for="LecturerId" class="text-danger"></span>
+                            </div>
 
-<form asp-action="Submission" method="post">
-    <div class="mb-3">
-        <label asp-for="ClaimMonth" class="form-label"></label>
-        <input asp-for="ClaimMonth" type="month" class="form-control" />
-        <span asp-validation-for="ClaimMonth" class="text-danger"></span>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ClaimMonth" class="form-label fw-bold">Claim Month</label>
+                                <input asp-for="ClaimMonth" type="month" class="form-control" />
+                                <span asp-validation-for="ClaimMonth" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="HoursWorked" class="form-label fw-bold">Hours Worked</label>
+                                <input asp-for="HoursWorked" type="number" step="0.1" class="form-control" />
+                                <span asp-validation-for="HoursWorked" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="HourlyRate" class="form-label fw-bold">Hourly Rate (R)</label>
+                                <input asp-for="HourlyRate" type="number" step="0.01" class="form-control" />
+                                <span asp-validation-for="HourlyRate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Notes" class="form-label fw-bold">Additional Notes</label>
+                            <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Any additional information about your claim..."></textarea>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="DocumentFiles" class="form-label fw-bold">Supporting Documents</label>
+                            <input asp-for="DocumentFiles" type="file" multiple class="form-control" />
+                            <div class="form-text">
+                                <i class="fas fa-info-circle me-1"></i>
+                                Supported formats: PDF, DOCX, XLSX, JPG, PNG (Max 5MB per file)
+                            </div>
+                            <span asp-validation-for="DocumentFiles" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-success btn-lg py-3">
+                                <i class="fas fa-paper-plane me-2"></i>Submit Claim
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label asp-for="HoursWorked" class="form-label"></label>
-        <input asp-for="HoursWorked" type="number" class="form-control" />
-        <span asp-validation-for="HoursWorked" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="HourlyRate" class="form-label"></label>
-        <input asp-for="HourlyRate" type="number" step="0.01" class="form-control" />
-        <span asp-validation-for="HourlyRate" class="text-danger"></span>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit Claim</button>
-</form>
+</div>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
